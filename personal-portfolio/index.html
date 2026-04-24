@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lukman - Full-Stack Developer & Founder of LUKMAN CODE CRAFT. Building scalable web applications and digital solutions.">
+    <meta name="keywords" content="Full-Stack Developer, JavaScript, React, Node.js, Web Developer, Software Engineer">
+    <meta name="author" content="Lukman">
+    <meta property="og:title" content="Lukman | Full-Stack Developer">
+    <meta property="og:description" content="Portfolio of Lukman, a passionate Full-Stack Developer building modern web experiences.">
+    <meta property="og:type" content="website">
+    <title>Lukman | Full-Stack Developer & Founder of LCC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">
+                <span class="nav__logo-text">LCC</span>
+            </a>
+            
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">Home</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">About</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#skills" class="nav__link">Skills</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#projects" class="nav__link">Projects</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#journey" class="nav__link">Journey</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Contact</a>
+                    </li>
+                </ul>
+                <div class="nav__close" id="nav-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+        <div class="hero__container container grid">
+            <div class="hero__content">
+                <span class="hero__subtitle">Hello, I'm</span>
+                <h1 class="hero__title">Lukman</h1>
+                <div class="hero__typing">
+                    <span class="typing-text"></span><span class="cursor">|</span>
+                </div>
+                <p class="hero__description">
+                    Founder of <strong>LUKMAN CODE CRAFT (LCC)</strong>. I craft scalable, high-performance 
+                    web applications with clean code and modern technologies. Passionate about solving 
+                    real-world problems through software engineering.
+                </p>
+                <div class="hero__buttons">
+                    <a href="#projects" class="button button--primary">
+                        <i class="fas fa-rocket"></i> View My Work
+                    </a>
+                    <a href="#contact" class="button button--ghost">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+                <div class="hero__social">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:yourmail@gmail.com" class="hero__social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            <div class="hero__img">
+                <div class="hero__img-wrapper">
+                    <div class="hero__img-bg"></div>
+                    <div class="hero__icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+            </div>
+        <div class="hero__scroll">
+            <a href="#about" class="hero__scroll-button">
+                <i class="fas fa-mouse"></i>
+                <span class="hero__scroll-name">Scroll Down</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="about__container container">
+            <span class="section__subtitle">Get To Know</span>
+            <h2 class="section__title">About Me</h2>
+            
+            <div class="about__content grid">
+                <div class="about__cards">
+                    <div class="about__card">
+                        <i class="fas fa-award about__card-icon"></i>
+                        <h3 class="about__card-title">Experience</h3>
+                        <span class="about__card-subtitle">2+ Years Learning</span>
+                    </div>
+                    <div class="about__card">
+                        <i class="fas fa-project-diagram about__card-icon"></i>
+                        <h3 class="about__card-title">Projects</h3>
+                        <span class="about__card-subtitle">10+ Completed</span>
+                    </div>
+                    <div class="about__card">
+                        <i class="fas fa-users about__card-icon"></i>
+                        <h3 class="about__card-title">Community</h3>
+                        <span class="about__card-subtitle">Active Contributor</span>
+                    </div>
+                
+                <div class="about__data">
+                    <p class="about__description">
+                        I am a dedicated <strong>Full-Stack JavaScript Developer</strong> on a mission to build 
+                        impactful digital products. As the founder of <strong>LUKMAN CODE CRAFT (LCC)</strong>, 
+                        I combine technical expertise with entrepreneurial vision to deliver solutions that matter.
+                    </p>
+                    <p class="about__description">
+                        My journey started with a curiosity for how things work on the web, and has evolved into 
+                        a deep passion for creating robust, user-centric applications. I thrive in environments 
+                        where I can learn, build, and iterate rapidly.
+                    </p>
+                    <a href="#contact" class="button button--primary">
+                        <i class="fas fa-comments"></i> Let's Talk
+                    </a>
+                </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="skills__container container">
+            <span class="section__subtitle">My Technical</span>
+            <h2 class="section__title">Skills & Tools</h2>
+            
+            <div class="skills__content grid">
+                <!-- Frontend -->
+                <div class="skills__category">
+                    <div class="skills__header">
+                        <i class="fas fa-laptop-code skills__icon"></i>
+                        <div>
+                            <h3 class="skills__title">Frontend Development</h3>
+                            <span class="skills__subtitle">Building beautiful interfaces</span>
+                        </div>
+                    <div class="skills__tags">
+                        <span class="skills__tag"><i class="fab fa-html5"></i> HTML5</span>
+                        <span class="skills__tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span class="skills__tag"><i class="fab fa-js"></i> JavaScript (ES6+)</span>
+                        <span class="skills__tag"><i class="fab fa-react"></i> React.js</span>
+                        <span class="skills__tag"><i class="fas fa-wind"></i> Tailwind CSS</span>
+                        <span class="skills__tag"><i class="fas fa-mobile-alt"></i> Responsive Design</span>
+                    </div>
+                
+                <!-- Backend -->
+                <div class="skills__category">
+                    <div class="skills__header">
+                        <i class="fas fa-server skills__icon"></i>
+                        <div>
+                            <h3 class="skills__title">Backend Development</h3>
+                            <span class="skills__subtitle">Powering robust applications</span>
+                        </div>
+                    <div class="skills__tags">
+                        <span class="skills__tag"><i class="fab fa-node-js"></i> Node.js</span>
+                        <span class="skills__tag"><i class="fas fa-server"></i> Express.js</span>
+                        <span class="skills__tag"><i class="fas fa-database"></i> MongoDB</span>
+                        <span class="skills__tag"><i class="fas fa-database"></i> PostgreSQL</span>
+                        <span class="skills__tag"><i class="fas fa-fire"></i> Firebase</span>
+                        <span class="skills__tag"><i class="fas fa-plug"></i> REST APIs</span>
+                    </div>
+                
+                <!-- Tools -->
+                <div class="skills__category">
+                    <div class="skills__header">
+                        <i class="fas fa-tools skills__icon"></i>
+                        <div>
+                            <h3 class="skills__title">Tools & Platforms</h3>
+                            <span class="skills__subtitle">Streamlining development</span>
+                        </div>
+                    <div class="skills__tags">
+                        <span class="skills__tag"><i class="fab fa-git-alt"></i> Git</span>
+                        <span class="skills__tag"><i class="fab fa-github"></i> GitHub</span>
+                        <span class="skills__tag"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="skills__tag"><i class="fas fa-cloud"></i> AWS Basics</span>
+                        <span class="skills__tag"><i class="fas fa-terminal"></i> CLI</span>
+                        <span class="skills__tag"><i class="fas fa-code-branch"></i> CI/CD</span>
+                    </div>
+            </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="projects__container container">
+            <span class="section__subtitle">My Recent</span>
+            <h2 class="section__title">Featured Projects</h2>
+            
+            <div class="projects__grid grid">
+                <!-- Project 1 -->
+                <article class="project__card">
+                    <div class="project__img-wrapper">
+                        <div class="project__img">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="project__overlay">
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Source Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    <div class="project__data">
+                        <h3 class="project__title">E-Commerce Platform</h3>
+                        <p class="project__description">
+                            A full-stack e-commerce solution with user authentication, product management, 
+                            shopping cart, and payment integration.
+                        </p>
+                        <div class="project__stack">
+                            <span class="project__tag">React</span>
+                            <span class="project__tag">Node.js</span>
+                            <span class="project__tag">MongoDB</span>
+                            <span class="project__tag">Stripe</span>
+                        </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project__card">
+                    <div class="project__img-wrapper">
+                        <div class="project__img project__img--2">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="project__overlay">
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Source Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    <div class="project__data">
+                        <h3 class="project__title">Task Management App</h3>
+                        <p class="project__description">
+                            A collaborative task manager with real-time updates, drag-and-drop functionality, 
+                            and team workspace features.
+                        </p>
+                        <div class="project__stack">
+                            <span class="project__tag">React</span>
+                            <span class="project__tag">Socket.io</span>
+                            <span class="project__tag">Express</span>
+                            <span class="project__tag">PostgreSQL</span>
+                        </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project__card">
+                    <div class="project__img-wrapper">
+                        <div class="project__img project__img--3">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <div class="project__overlay">
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Source Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    <div class="project__data">
+                        <h3 class="project__title">Weather Dashboard</h3>
+                        <p class="project__description">
+                            A responsive weather application featuring location-based forecasts, 
+                            interactive maps, and severe weather alerts.
+                        </p>
+                        <div class="project__stack">
+                            <span class="project__tag">JavaScript</span>
+                            <span class="project__tag">API Integration</span>
+                            <span class="project__tag">Chart.js</span>
+                            <span class="project__tag">CSS3</span>
+                        </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project__card">
+                    <div class="project__img-wrapper">
+                        <div class="project__img project__img--4">
+                            <i class="fas fa-blog"></i>
+                        </div>
+                        <div class="project__overlay">
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                            <a href="#" class="project__link" target="_blank" rel="noopener noreferrer" aria-label="Source Code">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    <div class="project__data">
+                        <h3 class="project__title">Developer Blog CMS</h3>
+                        <p class="project__description">
+                            A content management system for developers with markdown support, 
+                            syntax highlighting, and SEO optimization.
+                        </p>
+                        <div class="project__stack">
+                            <span class="project__tag">Next.js</span>
+                            <span class="project__tag">MDX</span>
+                            <span class="project__tag">Tailwind</span>
+                            <span class="project__tag">Vercel</span>
+                        </div>
+                </article>
+            </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="journey section" id="journey">
+        <div class="journey__container container">
+            <span class="section__subtitle">My Learning</span>
+            <h2 class="section__title">Journey</h2>
+            
+            <div class="journey__timeline">
+                <div class="journey__item">
+                    <div class="journey__dot"></div>
+                    <div class="journey__content">
+                        <span class="journey__date">2024 - Present</span>
+                        <h3 class="journey__title">Advanced Full-Stack Development</h3>
+                        <p class="journey__description">
+                            Deepening expertise in React ecosystem, Node.js microservices, cloud infrastructure, 
+                            and system design principles.
+                        </p>
+                    </div>
+                
+                <div class="journey__item">
+                    <div class="journey__dot"></div>
+                    <div class="journey__content">
+                        <span class="journey__date">2023 - 2024</span>
+                        <h3 class="journey__title">Founded LUKMAN CODE CRAFT</h3>
+                        <p class="journey__description">
+                            Launched my software development brand. Built multiple client projects and 
+                            open-source tools while mastering modern web technologies.
+                        </p>
+                    </div>
+                
+                <div class="journey__item">
+                    <div class="journey__dot"></div>
+                    <div class="journey__content">
+                        <span class="journey__date">2022 - 2023</span>
+                        <h3 class="journey__title">Core Web Fundamentals</h3>
+                        <p class="journey__description">
+                            Mastered HTML, CSS, JavaScript, and Git. Built foundational projects and 
+                            developed a strong understanding of web architecture.
+                        </p>
+                    </div>
+            </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="contact__container container">
+            <span class="section__subtitle">Get In Touch</span>
+            <h2 class="section__title">Contact Me</h2>
+            
+            <div class="contact__content grid">
+                <div class="contact__info">
+                    <h3 class="contact__info-title">Let's discuss your project</h3>
+                    <p class="contact__info-description">
+                        I'm currently available for freelance work and open to full-time opportunities. 
+                        If you have a project that needs some creative touch, I'd love to hear about it.
+                    </p>
+                    
+                    <div class="contact__cards">
+                        <div class="contact__card">
+                            <i class="fas fa-envelope contact__card-icon"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:yourmail@gmail.com">yourmail@gmail.com</a>
+                            </div>
+                        <div class="contact__card">
+                            <i class="fab fa-whatsapp contact__card-icon"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <span>Available for chat</span>
+                            </div>
+                        <div class="contact__card">
+                            <i class="fas fa-map-marker-alt contact__card-icon"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <span>Remote / Worldwide</span>
+                            </div>
+                    </div>
+                    
+                    <div class="contact__social">
+                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact__social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                
+                <form class="contact__form" id="contact-form">
+                    <div class="contact__form-group">
+                        <label for="name" class="contact__form-label">Your Name</label>
+                        <input type="text" id="name" name="name" class="contact__form-input" placeholder="John Doe" required>
+                    </div>
+                    <div class="contact__form-group">
+                        <label for="email" class="contact__form-label">Your Email</label>
+                        <input type="email" id="email" name="email" class="contact__form-input" placeholder="john@example.com" required>
+                    </div>
+                    <div class="contact__form-group">
+                        <label for="subject" class="contact__form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="contact__form-input" placeholder="Project Inquiry">
+                    </div>
+                    <div class="contact__form-group">
+                        <label for="message" class="contact__form-label">Message</label>
+                        <textarea id="message" name="message" class="contact__form-input contact__form-textarea" rows="5" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="button button--primary button--full">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container container">
+            <div class="footer__content">
+                <a href="#" class="footer__logo">LCC</a>
+                <p class="footer__description">
+                    Building the future, one line of code at a time.
+                </p>
+                <div class="footer__social">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 <strong>LUKMAN CODE CRAFT</strong>. All rights reserved.</p>
+                <p class="footer__credit">Designed & Built with <i class="fas fa-heart"></i> by Lukman</p>
+            </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="scrollup" id="scroll-up" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span class="toast__message">Message sent successfully!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
