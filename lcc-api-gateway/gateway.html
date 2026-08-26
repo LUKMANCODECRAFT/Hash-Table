@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCC Service Gateway & Token Vault v2.0</title>
+    <link rel="stylesheet" href="gateway.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gateway-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">⚡</span>
+                <div class="brand-text">
+                    <span class="brand-title">LCC GATEWAY</span>
+                    <span class="brand-version">v2.0 Enterprise</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#vault" class="nav-item active" data-tab="vault">
+                    <span class="nav-icon">🔒</span> Token Vault
+                    <span class="nav-badge" id="active-tokens-count">0</span>
+                </a>
+                <a href="#routes" class="nav-item" data-tab="routes">
+                    <span class="nav-icon">🛣️</span> Route Configurator
+                    <span class="nav-badge" id="active-routes-count">4</span>
+                </a>
+                <a href="#monitor" class="nav-item" data-tab="monitor">
+                    <span class="nav-icon">📊</span> Telemetry & Metrics
+                </a>
+                <a href="#sandbox" class="nav-item" data-tab="sandbox">
+                    <span class="nav-icon">🧪</span> API Sandbox
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-metric">
+                    <span class="metric-label">Proxy Engine:</span>
+                    <span class="metric-value">Active</span>
+                </div>
+                <div class="system-metric">
+                    <span class="metric-label">Uptime:</span>
+                    <span class="metric-value" id="system-uptime">99.99%</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Console Content -->
+        <main class="main-console">
+            <header class="console-header">
+                <div>
+                    <h1 id="page-title">Token Vault & Credential Management</h1>
+                    <p class="console-subtitle" id="page-subtitle">Generate, scope, and control microservice authorization tokens.</p>
+                </div>
+                <div class="header-widgets">
+                    <div class="system-status">
+                        <span class="status-dot"></span> Gateway Operational
+                    </div>
+                    <div class="clock-display" id="clock-display">00:00:00 UTC</div>
+                </div>
+            </header>
+
+            <!-- TAB 1: TOKEN VAULT -->
+            <div id="tab-vault" class="tab-content active">
+                <section class="console-card">
+                    <h2><span class="icon">➕</span> Issue Production Access Token</h2>
+                    <p class="card-desc">Configure credential parameters, permission scopes, and rate limits.</p>
+                    
+                    <form id="token-form" class="token-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="token-name">Token Name / Client Label</label>
+                                <input type="text" id="token-name" placeholder="e.g. Payments Service Worker" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="token-scope">Permission Scope</label>
+                                <select id="token-scope">
+                                    <option value="production:write">production:write (Standard Access)</option>
+                                    <option value="admin:full">admin:full (Root Administrator)</option>
+                                    <option value="read-only">read-only (Telemetry & Fetch)</option>
+                                    <option value="telemetry:ingest">telemetry:ingest (Log Stream Only)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="token-expiration">Lifecycle Expiration</label>
+                                <select id="token-expiration">
+                                    <option value="never">Never (Persistent)</option>
+                                    <option value="1h">1 Hour</option>
+                                    <option value="24h">24 Hours</option>
+                                    <option value="30d">30 Days</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="token-ratelimit">Rate Limit Throttling</label>
+                                <select id="token-ratelimit">
+                                    <option value="100 req/min">100 req / min</option>
+                                    <option value="1000 req/min" selected>1,000 req / min</option>
+                                    <option value="unlimited">Unlimited</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="vault-controls">
+                            <button type="submit" id="generate-token-btn" class="btn-primary">
+                                <span>🔑</span> Generate Production Token
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <section class="console-card margin-top">
+                    <h2><span class="icon">📜</span> Active Credential Registry</h2>
+                    <p class="card-desc">Live production tokens registered to the gateway environment.</p>
+
+                    <div class="table-wrapper">
+                        <table class="data-table" id="tokens-table">
+                            <thead>
+                                <tr>
+                                    <th>Client / Name</th>
+                                    <th>Token Credential</th>
+                                    <th>Scope</th>
+                                    <th>Expiration</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tokens-table-body">
+                                <!-- Populated dynamically by gateway.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: ROUTE CONFIGURATOR -->
+            <div id="tab-routes" class="tab-content">
+                <section class="console-card">
+                    <div class="card-header-flex">
+                        <div>
+                            <h2><span class="icon">🛣️</span> Proxy Route Controller</h2>
+                            <p class="card-desc">Configure proxy endpoints, upstream handlers, and simulated status codes.</p>
+                        </div>
+                        <button id="add-route-btn" class="btn-secondary">+ Add Custom Route</button>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="data-table" id="routes-table">
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Endpoint Path</th>
+                                    <th>Target Microservice</th>
+                                    <th>Mock Status Response</th>
+                                    <th>State</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="routes-table-body">
+                                <!-- Populated dynamically by gateway.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Custom Route Modal/Form Card -->
+                <section id="custom-route-card" class="console-card margin-top hidden">
+                    <h2><span class="icon">⚡</span> Add Custom Proxy Route</h2>
+                    <form id="route-form" class="form-grid">
+                        <div class="form-group">
+                            <label for="route-method">HTTP Method</label>
+                            <select id="route-method">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="DELETE">DELETE</option>
+                                <option value="PATCH">PATCH</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="route-path">Endpoint Path</label>
+                            <input type="text" id="route-path" placeholder="/v1/custom/endpoint" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="route-target">Target Service</label>
+                            <input type="text" id="route-target" placeholder="svc-custom-backend" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="route-status">Default Mock Status</label>
+                            <select id="route-status">
+                                <option value="200 OK">200 OK</option>
+                                <option value="201 Created">201 Created</option>
+                                <option value="400 Bad Request">400 Bad Request</option>
+                                <option value="401 Unauthorized">401 Unauthorized</option>
+                                <option value="429 Rate Limited">429 Rate Limited</option>
+                                <option value="503 Maintenance">503 Maintenance</option>
+                            </select>
+                        </div>
+                        <div class="form-controls-full">
+                            <button type="submit" class="btn-primary">Save Endpoint Route</button>
+                            <button type="button" id="cancel-route-btn" class="btn-secondary">Cancel</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <!-- TAB 3: TELEMETRY & METRICS -->
+            <div id="tab-monitor" class="tab-content">
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">Total Requests</div>
+                        <div class="metric-number" id="metric-total-req">0</div>
+                        <div class="metric-footer">Lifetime gateway traffic</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">Success Rate</div>
+                        <div class="metric-number text-success" id="metric-success-rate">100%</div>
+                        <div class="metric-footer">Status 2xx responses</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">Avg Latency</div>
+                        <div class="metric-number text-blue" id="metric-avg-latency">18 ms</div>
+                        <div class="metric-footer">Proxy delay average</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">Blocked / Errors</div>
+                        <div class="metric-number text-warning" id="metric-blocked-req">0</div>
+                        <div class="metric-footer">Auth failures & 4xx/5xx</div>
+                    </div>
+                </div>
+
+                <!-- Telemetry Terminal Stream Card -->
+                <section class="console-card margin-top">
+                    <div class="terminal-header-bar">
+                        <h2><span class="icon">📡</span> Asynchronous Telemetry Stream</h2>
+                        
+                        <div class="terminal-controls">
+                            <select id="log-filter-select" class="select-sm">
+                                <option value="ALL">All Logs</option>
+                                <option value="SUCCESS">Success (2xx)</option>
+                                <option value="WARNING">Warnings (4xx)</option>
+                                <option value="ERROR">Errors (5xx)</option>
+                                <option value="SYSTEM">System Events</option>
+                            </select>
+
+                            <button id="toggle-stream-btn" class="btn-secondary btn-sm">⏸️ Pause Stream</button>
+                            <button id="clear-terminal-btn" class="btn-secondary btn-sm">🗑️ Clear</button>
+                            <button id="export-logs-btn" class="btn-secondary btn-sm">💾 Export Logs</button>
+                        </div>
+                    </div>
+
+                    <div id="log-terminal" class="terminal-view">
+                        <div class="log-line system">[SYSTEM] LCC Proxy Telemetry Engine v2.0 initialized. Listening on port 443...</div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 4: API SANDBOX -->
+            <div id="tab-sandbox" class="tab-content">
+                <section class="console-card">
+                    <h2><span class="icon">🧪</span> Interactive API Request Simulator</h2>
+                    <p class="card-desc">Simulate live HTTP client calls directly against the gateway proxy engine.</p>
+
+                    <div class="sandbox-container">
+                        <div class="sandbox-request-panel">
+                            <h3>Request Composer</h3>
+                            <form id="sandbox-form">
+                                <div class="form-group">
+                                    <label for="sandbox-method">Method & Endpoint</label>
+                                    <div class="input-group">
+                                        <select id="sandbox-method" class="select-method">
+                                            <option value="GET">GET</option>
+                                            <option value="POST" selected>POST</option>
+                                            <option value="PUT">PUT</option>
+                                            <option value="DELETE">DELETE</option>
+                                        </select>
+                                        <select id="sandbox-endpoint" class="input-url">
+                                            <!-- Dynamically filled with routes -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sandbox-token-select">Authorization Header Token</label>
+                                    <select id="sandbox-token-select">
+                                        <option value="">No Authorization Header (Unauthenticated)</option>
+                                        <!-- Dynamically filled with generated tokens -->
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sandbox-body">Request Body (JSON)</label>
+                                    <textarea id="sandbox-body" rows="6" class="code-textarea">{
+  "client": "lcc_dashboard_tester",
+  "environment": "production",
+  "payload": {
+    "action": "sync_telemetry",
+    "timestamp": 1771992300
+  }
+}</textarea>
+                                </div>
+
+                                <button type="submit" class="btn-primary width-full">🚀 Send Proxy Request</button>
+                            </form>
+                        </div>
+
+                        <div class="sandbox-response-panel">
+                            <div class="response-header">
+                                <h3>Response Output</h3>
+                                <div id="sandbox-status-badge" class="badge-neutral">Awaiting Request</div>
+                            </div>
+                            
+                            <div class="response-metrics hidden" id="sandbox-metrics">
+                                <span>Latency: <strong id="sandbox-latency">--</strong></span>
+                                <span>Proxy: <strong>lcc-edge-01</strong></span>
+                            </div>
+
+                            <pre id="sandbox-response-body" class="response-body-view">// Response payload will appear here after executing a request...</pre>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="gateway.js"></script>
+</body>
+</html>
