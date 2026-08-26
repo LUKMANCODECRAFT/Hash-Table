@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hash Table Visualizer & Analytics Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <h1>HashTable Studio Pro</h1>
+          <p class="subtitle">Data Structure Visualizer & Collision Analytics Engine</p>
+        </div>
+      </div>
+      <div class="header-badge">
+        <span class="pulse-dot"></span> v2.0 Upgraded
+      </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="dashboard-grid">
+      <!-- Left Column: Controls & Input -->
+      <section class="panel control-panel glass-card">
+        <h2 class="panel-title">
+          <span class="icon">⚙️</span> Table Operations & Configuration
+        </h2>
+
+        <!-- Configuration Settings -->
+        <div class="config-group">
+          <div class="field">
+            <label for="algoSelect">Hash Strategy</label>
+            <select id="algoSelect" class="input-select">
+              <option value="unicode_sum">Unicode Sum</option>
+              <option value="polynomial">Polynomial Rolling</option>
+              <option value="fnv1a">FNV-1a 32-bit</option>
+              <option value="builtin">Simple Modulo</option>
+            </select>
+
+          </div>
+          <div class="field">
+            <label for="capacityInput">Bucket Capacity</label>
+            <input type="number" id="capacityInput" value="8" min="2" max="64" class="input-number" />
+          </div>
+        </div>
+
+        <!-- Operation Form -->
+        <div class="op-form">
+          <div class="field-row">
+            <div class="field">
+              <label for="keyInput">Key (string)</label>
+              <input type="text" id="keyInput" placeholder="e.g. golf" class="input-text" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="valInput">Value</label>
+              <input type="text" id="valInput" placeholder="e.g. sport" class="input-text" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button id="addBtn" class="btn btn-primary">
+              <span class="btn-icon">➕</span> Insert Pair
+            </button>
+            <button id="lookupBtn" class="btn btn-secondary">
+              <span class="btn-icon">🔍</span> Lookup Key
+            </button>
+            <button id="removeBtn" class="btn btn-danger">
+              <span class="btn-icon">🗑️</span> Remove Key
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Demo Presets -->
+        <div class="presets-section">
+          <label>Quick Presets</label>
+          <div class="preset-buttons">
+            <button class="btn-chip" id="presetAnagrams">
+              ⚡ Anagram Collisions ("golf", "flog")
+            </button>
+            <button class="btn-chip" id="presetTech">
+              💻 Tech Stack Terms
+            </button>
+            <button class="btn-chip" id="presetClear">
+              🧹 Clear All
+            </button>
+          </div>
+        </div>
+
+        <!-- Live Step-by-Step Hash Breakdown -->
+        <div class="hash-breakdown glass-card">
+          <h3 class="sub-title">🧮 Live Hash Step-by-Step Computation</h3>
+          <div id="hashMathBox" class="math-box">
+            <span class="placeholder-text">Type a key or insert an item to see character-by-character ASCII calculation trace.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Stats & Bucket Chain Visualizer -->
+      <section class="panel main-display">
+        <!-- Stat Cards Bar -->
+        <div class="stats-row">
+          <div class="stat-card glass-card">
+            <div class="stat-label">Total Elements</div>
+            <div id="statTotalItems" class="stat-value">0</div>
+            <div class="stat-sub">Active items in table</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-label">Active Buckets</div>
+            <div id="statBuckets" class="stat-value">0 / 8</div>
+            <div class="stat-sub">Occupied hash slots</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-label">Collisions</div>
+            <div id="statCollisions" class="stat-value accent-warning">0</div>
+            <div id="statCollisionRate" class="stat-sub">0% collision rate</div>
+          </div>
+          <div class="stat-card glass-card">
+            <div class="stat-label">Load Factor ($\alpha$)</div>
+            <div id="statLoadFactor" class="stat-value accent-info">0.00</div>
+            <div class="load-bar-track">
+              <div id="loadBarFill" class="load-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Bucket Inspector -->
+        <div class="buckets-container glass-card">
+          <div class="buckets-header">
+            <h3>📦 Hash Table Buckets & Separate Chaining Inspector</h3>
+            <span class="badge-info">Separate Chaining ($O(1)$ avg)</span>
+          </div>
+          <div id="bucketsView" class="buckets-grid">
+            <!-- Dynamically populated buckets -->
+          </div>
+        </div>
+
+        <!-- Console & Activity Output -->
+        <div class="console-box glass-card">
+          <div class="console-header">
+            <span>📋 Activity & Lookup Log</span>
+            <button id="clearConsoleBtn" class="btn-tiny">Clear Log</button>
+          </div>
+          <div id="consoleLog" class="console-log">
+            <div class="log-entry log-info">[System initialized] Upgraded HashTable Engine Ready.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
